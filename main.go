@@ -29,9 +29,7 @@ func Setscreen(width int, height int, name string) {
 	GG = &Game{}
 	ebiten.SetWindowSize(width, height)
 	ebiten.SetWindowTitle(name)
-	go func() {
-		ebiten.RunGame(GG)
-	}()
+	ebiten.RunGame(GG)
 
 }
 
