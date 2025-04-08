@@ -29,14 +29,22 @@ func Setscreen(width int, height int, name string) {
 	GG = &Game{}
 	ebiten.SetWindowSize(width, height)
 	ebiten.SetWindowTitle(name)
-	ebiten.RunGame(GG)
+	go func() {
+		ebiten.RunGame(GG)
+	}()
 
 }
 
 func DrawRectBorder(x float32, y float32, width float32, height float32, color color.Color, border_width float32, antialias bool) {
-	vector.StrokeRect(GG.Screen, x, y, width, height, border_width, color, antialias)
+	if GG.Screen != nil {
+		vector.StrokeRect(GG.Screen, x, y, width, height, border_width, color, antialias)
+	}
+
 }
 
 func DrawRectFilled(x float32, y float32, width float32, height float32, color color.Color, antialias bool) {
-	vector.DrawFilledRect(GG.Screen, x, y, width, height, color, antialias)
+	if GG.Screen != nil {
+		vector.DrawFilledRect(GG.Screen, x, y, width, height, color, antialias)
+	}
+
 }
